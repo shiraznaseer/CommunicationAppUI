@@ -1,16 +1,97 @@
-# React + Vite
+# Communication App UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Vite + React UI for a real-time communication/chat application.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React
+- Vite
+- React Router
+- Axios
+- SignalR (`@microsoft/signalr`)
 
-## React Compiler
+## Backend API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Swagger: https://appcommunication.musasoftservices.com/swagger/index.html
+- REST Base URL (used by the UI): https://appcommunication.musasoftservices.com/api
+- SignalR Hub URL (used by the UI): https://appcommunication.musasoftservices.com/hubs/chat
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (LTS recommended)
+- npm
+
+## Project Structure
+
+```text
+CommunicationAppUI/
+  public/
+    vite.svg
+  src/
+    assets/
+    components/
+      ChatWindow.jsx
+      ConnectionStatus.jsx
+      MessageInput.jsx
+      ProtectedRoute.jsx
+      UserList.jsx
+    pages/
+      Chat.jsx
+      Login.jsx
+      Register.jsx
+    services/
+      api.js
+      authService.js
+      chatService.js
+      userService.js
+    App.jsx
+    App.css
+    main.jsx
+    index.css
+  index.html
+  vite.config.js
+  package.json
+```
+
+### Install
+
+```bash
+npm install
+```
+
+### Run (Development)
+
+```bash
+npm run dev
+```
+
+Vite will print the local dev URL in the terminal (typically `http://localhost:5173`).
+
+### Build
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+## Configuration (API URLs)
+
+This project currently uses hardcoded backend URLs:
+
+- REST API base URL: `src/services/api.js` (`API_BASE_URL`)
+- SignalR hub URL: `src/services/chatService.js` (`.withUrl(...)`)
+
+If you need to point the UI to a different environment (dev/staging/prod), update those values accordingly.
+
+## App Routes
+
+- `/login` - Login
+- `/register` - Register
+- `/chat` - Chat (protected)
